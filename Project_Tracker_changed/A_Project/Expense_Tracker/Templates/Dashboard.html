@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="../static/animation.css">
+ 
+</head>
+<body>
+    <!-- Animated Header -->
+    <div class="header">
+        <div class="logo">
+            <i class="fas fa-wallet"></i>
+        </div>
+        <span class="animated-text">
+            <span>E</span>
+            <span>x</span>
+            <span>p</span>
+            <span>e</span>
+            <span>n</span>
+            <span>s</span>
+            <span>e</span>
+            <span> </span>
+            <span>T</span>
+            <span>r</span>
+            <span>a</span>
+            <span>c</span>
+            <span>k</span>
+            <span>e</span>
+            <span>r</span>
+        </span>
+    </div>
+    <!-- End of Animated Header -->
+
+    <div class="container-fluid">
+        <div class="row">
+            <nav class="col-md-3 col-lg-2 d-md-block sidebar">
+                <div class="sidebar-sticky">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('Dashboard') }}">Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('budgets') }}">Budgets</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('Expenses') }}">Expenses</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('Register') }}">Reports</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('Logout') }}">Logout</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4 main-content main">
+                <h1 class="text-center mt-4">Welcome to The Dashboard</h1>
+                <div class="row justify-content-center">
+                    <div class="col-md-6 col-lg-4">
+                        <div class="dashboard-box Expenses" onclick="location.href='{{ url_for('view_expenses') }}'">
+                            <h2>Expenses</h2>
+                            <p>{{ expenses_count }}</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4">
+                        <div class="dashboard-box Budjets" onclick="location.href='{{ url_for('budgets') }}'">
+                            <h2>Budjets</h2>
+                            <p>{{ budjets_count }}</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4">
+                        <div class="dashboard-box Reports" onclick="location.href='{{ url_for('Login') }}'">
+                            <h2>Reports</h2>
+                            <p>{{ users_count }}</p>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center" style="background-color: rgb(37, 85, 123); color: white; padding: 10px 0;">
+        <div class="container">
+            <p>&copy; 2024 Vertex Software. All rights reserved.</p>
+            <p>
+                <a href="#" style="color: #cfd8dc; text-decoration: none;">Privacy Policy</a> |
+                <a href="#" style="color: #cfd8dc; text-decoration: none;">Terms of Service</a> |
+                <a href="#" style="color: #cfd8dc; text-decoration: none;">Contact Us</a>
+            </p>
+        </div>
+    </footer>
+    <!-- End of Footer -->
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="../static/animation.css">
+ 
+</head>
+<body>
+    <!-- Animated Header -->
+    <div class="header">
+        <div class="logo">
+            <i class="fas fa-wallet"></i>
+        </div>
+        <span class="animated-text">
+            <span>E</span>
+            <span>x</span>
+            <span>p</span>
+            <span>e</span>
+            <span>n</span>
+            <span>s</span>
+            <span>e</span>
+            <span> </span>
+            <span>T</span>
+            <span>r</span>
+            <span>a</span>
+            <span>c</span>
+            <span>k</span>
+            <span>e</span>
+            <span>r</span>
+        </span>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <nav class="col-md-3 col-lg-2 d-md-block sidebar">
+                <div class="sidebar-sticky">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('Dashboard') }}">Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('budgets') }}">Budgets</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('Expenses') }}">Expenses</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('Register') }}">Reports</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('Logout') }}">Logout</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4 main-content">
+    <div class="container">
+        <h2>Set Budgets</h2>
+        <form action="{{ url_for('budgets') }}" method="POST" class="mb-4">
+            <div class="form-group">
+                <label for="category">Category</label>
+                <input type="text" id="category" name="category" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="limit_">Budget Limit</label>
+                <input type="number" id="limit_" name="limit_" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Set Budget</button>
+        </form>
+    
+        <h2 class="mt-5">Your Budgets</h2>
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Budget Limit</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for budget in budgets %}
+                    <tr>
+                        <td>{{ budget.category }}</td>
+                        <td>{{ budget.limit_ }}</td>
+                        <td>
+                            <a href="{{ url_for('edit_budget', budjet_id=budget.budjet_id) }}" class="btn btn-warning btn-sm">Edit</a>
+                            <form action="{{ url_for('delete_budjet', budjet_id=budget.budjet_id) }}" method="post" style="display:inline;">
+                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    </main>
+        </div>
+    </div>
+    <footer class="text-center " style="background-color:  rgb(37, 85, 123); color: white; padding: 10px 0;">
+        <div class="container">
+            <p>&copy; 2024 Vertex Software. All rights reserved.</p>
+            <p>
+                <a href="#" style="color: #cfd8dc; text-decoration: none;">Privacy Policy</a> |
+                <a href="#" style="color: #cfd8dc; text-decoration: none;">Terms of Service</a> |
+                <a href="#" style="color: #cfd8dc; text-decoration: none;">Contact Us</a>
+            </p>
+        </div>
+    </footer>
+    <!-- End of Footer -->
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+</body>
+</html>

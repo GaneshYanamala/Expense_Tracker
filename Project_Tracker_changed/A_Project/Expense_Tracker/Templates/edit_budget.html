@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Budget</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/animation.css">
+
+</head>
+<body>
+     <!-- Animated Header -->
+     <div class="header">
+        <div class="logo">
+            <i class="fas fa-wallet"></i>
+        </div>
+        <span class="animated-text">
+            <span>E</span>
+            <span>x</span>
+            <span>p</span>
+            <span>e</span>
+            <span>n</span>
+            <span>s</span>
+            <span>e</span>
+            <span> </span>
+            <span>T</span>
+            <span>r</span>
+            <span>a</span>
+            <span>c</span>
+            <span>k</span>
+            <span>e</span>
+            <span>r</span>
+        </span>
+    </div>
+    <div class="container">
+        <h2>Edit Budget</h2>
+        <form action="{{ url_for('edit_budget', budjet_id=budget.budjet_id) }}" method="POST">
+            <div class="form-group">
+                <label for="category">Category</label>
+                <input type="text" id="category" name="category" class="form-control" required value="{{ budget.category }}">
+            </div>
+            <div class="form-group">
+                <label for="limit_">Budget Limit</label>
+                <input type="number" id="limit_" name="limit_" class="form-control" required value="{{ budget.limit_ }}">
+            </div>
+            <button type="submit" class="btn btn-primary">Update Budget</button>
+        </form>
+    </div>
+</body>
+</html>

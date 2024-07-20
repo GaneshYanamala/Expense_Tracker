@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Story</title>
+    <link rel="stylesheet" href="../../static/styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <ul class="nav-links">
+            <li><a href="{{ url_for('user_dashboard') }}">Dashboard</a></li>
+            
+        </ul>
+    </nav>
+    <div class="container">
+        <main>
+            <div>
+                <h2>Story Details:</h2>
+                <div>
+                    <div>
+                        <img src="{{ url_for('static', filename='uploads/' ~ story_data.filename) }}" alt="Story Photo">
+                        <h5>{{ story_data.title }}</h5>
+                        <p>{{ story_data.story }}</p>
+
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>

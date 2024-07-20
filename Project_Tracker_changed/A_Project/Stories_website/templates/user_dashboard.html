@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="../static/styles.css">
+    <script>
+        function confirmDelete(event) {
+            event.preventDefault(); // Prevent the form from submitting immediately
+            var confirmation = confirm("Are you sure you want to delete this item?");
+            if (confirmation) {
+                event.target.form.submit(); // Submit the form if the user confirms
+            }
+        }
+    </script>
+    <style>
+        /* Simple CSS for pagination controls */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 0;
+        }
+
+        .pagination li {
+            margin: 0 5px;
+        }
+
+        .pagination a {
+            text-decoration: none;
+            padding: 5px 10px;
+            color: #007bff;
+            border: 1px solid #dee2e6;
+            border-radius: 3px;
+        }
+
+        .pagination a:hover {
+            background-color: #f1f1f1;
+        }
+
+        .pagination .active a {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .pagination .disabled a {
+            color: #6c757d;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <ul class="nav-links">
+            <li><a href="{{url_for('user_dashboard', page=1) }}">Dashboard</a></li>
+            
+        </ul>
+    </nav>
+
+    <div class="container">
+        
+        <!-- new code ends -->
+<h1>Data: {{data}}</h1>
+        {% if data %}
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th>Story Title</th>
+                    <th>Created at</th>
+                    <th>View</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in data %}
+                
+                <tr>
+                    <td>{{row.title}}</td>
+                    <td>{{row.created_at}}</td>
+                    
+                   
+                    <td>
+                        <form action="{{ url_for('user_view_story', story_id=row.story_id) }}" method="POST">
+                            <button type="submit" class="delete-link">View</button>
+
+                        </form>
+                    </td>
+                    
+                </tr>
+                {%endfor%}
+                <!-- More rows as needed -->
+            </tbody>
+        </table>
+        {% endif %}
+        <!-- pagination logic -->
+        <ul class="pagination">
+            {% if page > 1 %}
+            <li><a href="{{ url_for('user_dashboard', page=1) }}">First</a></li>
+            <li><a href="{{ url_for('user_dashboard', page=page-1) }}">Previous</a></li>
+            {% else %}
+            <li class="disabled"><a href="#">First</a></li>
+            <li class="disabled"><a href="#">Previous</a></li>
+            {% endif %}
+    
+            {% for p in range(1, total_pages + 1) %}
+            {% if p == page %}
+            <li class="active"><a href="#">{{ p }}</a></li>
+            {% else %}
+            <li><a href="{{ url_for('user_dashboard', page=p) }}">{{ p }}</a></li>
+            {% endif %}
+            {% endfor %}
+    
+            {% if page < total_pages %}
+            <li><a href="{{ url_for('user_dashboard', page=page+1) }}">Next</a></li>
+            <li><a href="{{ url_for('user_dashboard', page=total_pages) }}">Last</a></li>
+            {% else %}
+            <li class="disabled"><a href="#">Next</a></li>
+            <li class="disabled"><a href="#">Last</a></li>
+            {% endif %}
+        </ul>
+    </div>
+</body>
+
+</html>
